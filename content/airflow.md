@@ -1,14 +1,14 @@
 # Apache Airflow
 
-- [Airflow là gì](#airflow-là-gi)
-- [Airflow giải quyết những vấn đề nào](#airflow-giải-quyết-những-vấn-đề-nào)
+- [Giới thiệu Airflow](#giới-thiệu-airflow)
+- [Những vấn đề Airflow giải quyết](#những-vấn-đề-airflow-giải-quyết)
 - [Giải thích cách thiết kế workflow trong Airflow](#giải-thích-cách-thiết-kế-workflow-trong-airflow)
 - [Trình bày kiến trúc của Airflow và các thành phần của nó](#trình-bày-kiến-trúc-của-airflow-và-các-thành-phần-của-nó)
-- [Có những loại Executor nào trong Airflow](#có-những-loại-executor-nào-trong-airflow)
-- [Ưu và nhược điểm của SequentialExecutor là gì](#ưu-và-nhược-điểm-của-sequentialexecutor)
-- [Ưu và nhược điểm của LocalExecutor là gì](#ưu-và-nhược-điểm-của-localexecutor)
-- [Ưu và nhược điểm của CeleryExecutor là gì](#ưu-và-nhược-điểm-của-celeryexecutor)
-- [Ưu và nhược điểm của KubernetesExecutor là gì](#ưu-và-nhược-điểm-của-kubernetesexecutor)
+- [Phân loại Executor trong Airflow](#phân-loại-executor-trong-airflow)
+- [Ưu và nhược điểm của SequentialExecutor](#ưu-và-nhược-điểm-của-sequentialexecutor)
+- [Ưu và nhược điểm của LocalExecutor](#ưu-và-nhược-điểm-của-localexecutor)
+- [Ưu và nhược điểm của CeleryExecutor](#ưu-và-nhược-điểm-của-celeryexecutor)
+- [Ưu và nhược điểm của KubernetesExecutor](#ưu-và-nhược-điểm-của-kubernetesexecutor)
 - [Cách định nghĩa một workflow trong Airflow](#cách-định-nghĩa-một-workflow-trong-airflow)
 - [Làm thế nào để module có thể được Airflow nhận diện khi bạn sử dụng Docker Compose](#làm-thế-nào-để-module-có-thể-được-airflow-nhận-diện-khi-bạn-sử-dụng-docker-compose)
 - [Cách lên lịch DAG trong Airflow](#cách-lên-lịch-dag-trong-airflow)
@@ -17,23 +17,23 @@
 - [Jinja templates là gì](#jinja-templates-là-gi)
 - [Cách sử dụng Airflow XComs trong Jinja templates](#cách-sử-dụng-airflow-xcoms-trong-jinja-templates)
 
-# Airflow là gì ?
+# Giới thiệu Airflow
 
 Apache Airflow là một nền tảng quản lý workflow mã nguồn mở. Nó được bắt đầu vào tháng 10 năm 2014 tại Airbnb như một giải pháp để quản lý các workflow ngày càng phức tạp của công ty. Việc Airbnb tạo ra Airflow cho phép họ lập trình tự động, lên lịch và giám sát các workflow thông qua giao diện người dùng Airflow tích hợp sẵn. Airflow là một công cụ điều phối workflow cho pipeline ETL (Extract, Transform, Load – Trích xuất, Biến đổi, Tải dữ liệu).
 
-[Table of Contents](#)
+[Table of Contents](#apache-airflow)
 
-# Airflow giải quyết những vấn đề gì?
+# Những vấn đề Airflow giải quyết
 
 Cron là một kỹ thuật lập lịch tác vụ cũ. Cron có khả năng mở rộng yêu cầu sự hỗ trợ từ bên ngoài để ghi lại, theo dõi và quản lý các tác vụ. Giao diện Airflow (Airflow UI) được sử dụng để theo dõi và giám sát việc thực thi workflow. Việc tạo và duy trì mối quan hệ giữa các tác vụ trong cron là một thách thức, trong khi việc này lại đơn giản khi viết mã Python trong Airflow. Các tác vụ Cron không thể tái tạo cho đến khi chúng được cấu hình bên ngoài. Airflow duy trì một bản ghi kiểm toán (audit trail) của tất cả các tác vụ đã hoàn thành.
 
-[Table of Contents](#)
+[Table of Contents](#apache-airflow)
 
 # Giải thích cách thiết kế workflow trong Airflow
 
 Một đồ thị có hướng acyclic (DAG – Directed Acyclic Graph) được sử dụng để thiết kế workflow trong Airflow. Điều này có nghĩa là khi tạo workflow, bạn cần xem xét cách chia nhỏ nó thành các tác vụ có thể hoàn thành độc lập. Các tác vụ sau đó có thể được kết hợp thành một đồ thị để tạo thành một tổng thể logic. Logic tổng thể của workflow dựa trên hình dạng của đồ thị. Một DAG trong Airflow có thể có nhiều nhánh, và bạn có thể chọn nhánh nào để theo dõi hoặc nhánh nào bỏ qua trong quá trình thực thi workflow. Pipeline DAG trong Airflow có thể hoàn toàn dừng lại và các workflow có thể tiếp tục chạy từ tác vụ chưa hoàn thành cuối cùng. Điều quan trọng là phải nhớ rằng các toán tử (operator) trong Airflow có thể được chạy nhiều lần khi thiết kế, và mỗi tác vụ nên có tính idempotent, nghĩa là có thể thực hiện nhiều lần mà không gây ra hậu quả không mong muốn.
 
-[Table of Contents](#)
+[Table of Contents](#apache-airflow)
 
 # Giải thích Kiến trúc Airflow và các thành phần của nó
 
@@ -57,9 +57,9 @@ Airflow có bốn thành phần chính.
 - **Metadata Database**  
   - Airflow hỗ trợ nhiều loại cơ sở dữ liệu lưu trữ metadata. Cơ sở dữ liệu này chứa thông tin về các DAG, các lần chạy của chúng và các cấu hình khác của Airflow như người dùng, vai trò và kết nối. Trạng thái và các lần chạy của DAG được Web Server hiển thị từ cơ sở dữ liệu. Thông tin này cũng được Scheduler cập nhật vào cơ sở dữ liệu metadata.
 
-[Table of Contents](#)
+[Table of Contents](#apache-airflow)
 
-# Các loại Executor trong Airflow là gì?
+# Phân loại Executor trong Airflow
 
 Executor là các thành phần thực sự thực thi các task, trong khi Scheduler điều phối chúng. Airflow có các loại executor khác nhau, bao gồm SequentialExecutor, LocalExecutor, CeleryExecutor và KubernetesExecutor. Mọi người thường chọn executor phù hợp nhất với trường hợp sử dụng của họ. Các loại Executor:
 
@@ -75,9 +75,9 @@ Executor là các thành phần thực sự thực thi các task, trong khi Sche
 ## KubernetesExecutor
 - Mỗi task được chạy bởi KubernetesExecutor trong pod Kubernetes riêng của nó. Không giống như Celery, nó tạo các worker pod theo yêu cầu, cho phép sử dụng tài nguyên hiệu quả nhất.
 
-[Table of Contents](#)
+[Table of Contents](#apache-airflow)
 
-# Ưu và nhược điểm của SequentialExecutor là gì?
+# Ưu và nhược điểm của SequentialExecutor 
 
 **Ưu điểm:**
 
@@ -86,9 +86,9 @@ Executor là các thành phần thực sự thực thi các task, trong khi Sche
 
 **Nhược điểm:** Nó không có khả năng mở rộng. Không thể thực hiện nhiều task cùng một lúc. Không phù hợp để sử dụng trong môi trường production.
 
-[Table of Contents](#)
+[Table of Contents](#apache-airflow)
 
-# Ưu và nhược điểm của LocalExecutor là gì?
+# Ưu và nhược điểm của LocalExecutor 
 
 **Ưu điểm:**
 
@@ -101,9 +101,9 @@ Executor là các thành phần thực sự thực thi các task, trong khi Sche
 - Chỉ có một điểm lỗi duy nhất.
 - Không phù hợp để sử dụng trong môi trường production.
 
-[Table of Contents](#)
+[Table of Contents](#apache-airflow)
 
-# Ưu và nhược điểm của CeleryExecutor là gì?
+# Ưu và nhược điểm của CeleryExecutor
 
 **Ưu điểm:**
 
@@ -115,9 +115,9 @@ Executor là các thành phần thực sự thực thi các task, trong khi Sche
 - Celery yêu cầu RabbitMQ/Redis để xếp hàng task, điều này trùng lặp với những gì Airflow đã hỗ trợ sẵn.
 - Việc thiết lập cũng phức tạp do các phụ thuộc được đề cập ở trên.
 
-[Table of Contents](#)
+[Table of Contents](#apache-airflow)
 
-# Ưu và nhược điểm của KubernetesExecutor là gì?
+# Ưu và nhược điểm của KubernetesExecutor 
 
 **Ưu điểm:**
 
@@ -128,9 +128,9 @@ Executor là các thành phần thực sự thực thi các task, trong khi Sche
 
 - Airflow còn mới với Kubernetes, và tài liệu khá phức tạp.
 
-[Table of Contents](#)
+[Table of Contents](#apache-airflow)
 
-# Làm thế nào để định nghĩa một workflow trong Airflow?
+# Làm thế nào để định nghĩa một workflow trong Airflow
 
 Các file Python được sử dụng để định nghĩa workflow. DAG (Directed Acyclic Graph - Đồ thị có hướng không chu trình). Class Python DAG trong Airflow cho phép bạn tạo một Directed Acyclic Graph, đây là biểu diễn của workflow.
 ```python
@@ -150,7 +150,7 @@ schedule_interval='* * * * *',
 Bạn có thể sử dụng start date để khởi chạy một task vào một ngày cụ thể.
 Schedule interval chỉ định tần suất mỗi workflow được lên lịch chạy. '* * * * *' cho biết các task phải chạy mỗi phút.
 
-[Table of Contents](#)
+[Table of Contents](#apache-airflow)
 
 
 
