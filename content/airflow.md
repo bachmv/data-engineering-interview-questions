@@ -3,7 +3,7 @@
 - [Giới thiệu Airflow](#giới-thiệu-airflow)
 - [Những vấn đề Airflow giải quyết](#những-vấn-đề-airflow-giải-quyết)
 - [Giải thích cách thiết kế workflow trong Airflow](#giải-thích-cách-thiết-kế-workflow-trong-airflow)
-- [Trình bày kiến trúc của Airflow và các thành phần của nó](#trình-bày-kiến-trúc-của-airflow-và-các-thành-phần-của-nó)
+- [Kiến trúc Airflow và các thành phần của nó](#Kiến-trúc-của-airflow-và-các-thành-phần-của-nó)
 - [Phân loại Executor trong Airflow](#phân-loại-executor-trong-airflow)
 - [Ưu và nhược điểm của SequentialExecutor](#ưu-và-nhược-điểm-của-sequentialexecutor)
 - [Ưu và nhược điểm của LocalExecutor](#ưu-và-nhược-điểm-của-localexecutor)
@@ -35,7 +35,7 @@ Một đồ thị có hướng acyclic (DAG – Directed Acyclic Graph) được
 
 [Table of Contents](#apache-airflow)
 
-# Giải thích Kiến trúc Airflow và các thành phần của nó
+# Kiến trúc Airflow và các thành phần của nó
 
 Airflow có bốn thành phần chính.
 
