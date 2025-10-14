@@ -1,6 +1,6 @@
 # Apache Airflow
 
-- [Airflow là gì?](#Airflow-la-gi)
+- [Airflow là gì?](#airflow-la-gi)
 - [Airflow giải quyết những vấn đề nào?](#)
 - [Giải thích cách thiết kế workflow trong Airflow?](#)
 - [Trình bày kiến trúc của Airflow và các thành phần của nó?](#)
