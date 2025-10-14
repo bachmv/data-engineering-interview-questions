@@ -3,7 +3,7 @@
 - [Giới thiệu Airflow](#giới-thiệu-airflow)
 - [Những vấn đề Airflow giải quyết](#những-vấn-đề-airflow-giải-quyết)
 - [Giải thích cách thiết kế workflow trong Airflow](#giải-thích-cách-thiết-kế-workflow-trong-airflow)
-- [Kiến trúc Airflow và các thành phần của nó](#Kiến-trúc-của-airflow-và-các-thành-phần-của-nó)
+- [Kiến trúc Airflow và các thành phần của nó](#Kiến-trúc-airflow-và-các-thành-phần-của-nó)
 - [Phân loại Executor trong Airflow](#phân-loại-executor-trong-airflow)
 - [Ưu và nhược điểm của SequentialExecutor](#ưu-và-nhược-điểm-của-sequentialexecutor)
 - [Ưu và nhược điểm của LocalExecutor](#ưu-và-nhược-điểm-của-localexecutor)
