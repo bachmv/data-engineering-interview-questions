@@ -1,6 +1,6 @@
 # Apache Airflow
 
-- [Airflow la gi](#airflow-la-gi)
+- [Airflow là gì](#airflow-là-gì)
 - [Airflow giải quyết những vấn đề nào?](#)
 - [Giải thích cách thiết kế workflow trong Airflow?](#)
 - [Trình bày kiến trúc của Airflow và các thành phần của nó?](#)
@@ -17,7 +17,7 @@
 - [Jinja templates là gì?](#)
 - [Cách sử dụng Airflow XComs trong Jinja templates?](#)
 
-# Airflow la gi
+# Airflow là gì
 
 Apache Airflow là một nền tảng quản lý workflow mã nguồn mở. Nó được bắt đầu vào tháng 10 năm 2014 tại Airbnb như một giải pháp để quản lý các workflow ngày càng phức tạp của công ty. Việc Airbnb tạo ra Airflow cho phép họ lập trình tự động, lên lịch và giám sát các workflow thông qua giao diện người dùng Airflow tích hợp sẵn. Airflow là một công cụ điều phối workflow cho pipeline ETL (Extract, Transform, Load – Trích xuất, Biến đổi, Tải dữ liệu).
 
